@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+
+<?php
+	session_start();
+	include '../includes/connDB1.php';
+$zh=$_POST['zh'];
+$mm=$_POST['mm'];
+$mm=md5($mm);
+$sql="select * from forumer where zh='$zh'";
+$query=mysql_query($sql)or die (mysql_error());
+$row=mysql_fetch_array($query);	
+		if($row['zh']==$zh && $row['mm']==$mm){
+					$_SESSION['zh']=$zh;
+				echo "<script>window.location.href='../index.php'</script>";
+											}
+	else{
+		echo "<script>alert('用户名或密码错误');window.location.href='land.html';</script>";
+		}
+
+?>
+</html>
